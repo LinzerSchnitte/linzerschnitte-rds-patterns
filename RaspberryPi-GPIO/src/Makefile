@@ -28,3 +28,7 @@ clean:
 	-rmdir $(OUT_DIR);
 	-rm $(LIB_DIR)/*.a;
 	-rmdir $(LIB_DIR);
+
+install:
+	-cp ../library/librpigpio.a ../../gpio/library/librpigpio.a
+	-cp ../include/* ../../gpio/include/
