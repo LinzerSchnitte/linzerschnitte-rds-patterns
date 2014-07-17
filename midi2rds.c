@@ -98,39 +98,39 @@ int program_change_action(int channel, int value) {
 //    printf("PgC CH %2d,VALUE %3d \n",channel,value);
     switch (value){
     	case 3:
-	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd03_ontime2*cmd03_ontime1); 
+	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd03_ontime2*cmd03_ontime1);
 				LS_CMD( value, addresses[channel], cmd03_ontime2*cmd03_ontime1);
 	  break;  
         case 4:
-	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd04_delayoff2*cmd04_delayoff1); 
+	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd04_delayoff2*cmd04_delayoff1);
 			    LS_CMD( value, addresses[channel], cmd04_delayoff2*cmd04_delayoff1);
 	  break;
         case 6:
-	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd06_tonethreshhold); 
+	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd06_tonethreshhold);
 				 LS_CMD( value, addresses[channel], cmd06_tonethreshhold);
 	  break;
         case 7:
-	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd07_hysteresis); 
+	  printf("RDSCMD: %2.2x %4.4x %4.4x\n",value,addresses[channel],cmd07_hysteresis);
 				LS_CMD( value, addresses[channel], cmd07_hysteresis);
 	  break; 
         case 9:
-	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]); 
+	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]);
 				LS_CMD( value, addresses[channel], 0);
 	  break; 
         case 10:
-	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]); 
+	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]);
 				LS_CMD( value, addresses[channel], 0);
 	  break;
 	case 11:
-	  printf("RDSCMD: %2.2x %4.4x %2.2x%2.2x\n",value,addresses[channel],cmd0b_attacktime,cmd0b_decaytime); 
+	  printf("RDSCMD: %2.2x %4.4x %2.2x%2.2x\n",value,addresses[channel],cmd0b_attacktime,cmd0b_decaytime);
 				LS_CMD( value, addresses[channel], cmd0b_attacktime*0x100+cmd0b_decaytime);
 	  break;
         case 12:
-	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]); 
+	  printf("RDSCMD: %2.2x %4.4x 0000\n",value,addresses[channel]);
 				LS_CMD( value, addresses[channel], 0);
 	  break;
 	case 13:
-	  printf("RDSCMD: %2.2x %4.4x %2.2x%2.2x\n",value,addresses[channel],cmd0d_ontime,cmd0d_offtime); //0D 
+	  printf("RDSCMD: %2.2x %4.4x %2.2x%2.2x\n",value,addresses[channel],cmd0d_ontime,cmd0d_offtime); //0D
 				LS_CMD( value, addresses[channel], cmd0d_ontime*0x100+cmd0d_offtime);
 	  break; 
 	case 14:
@@ -200,7 +200,7 @@ int midi_read() {
             case SND_SEQ_EVENT_PGMCHANGE:
 		channel = ev->data.control.channel;
 		value = ev->data.control.value;
-                printf("MIDI value: %d\n", value);                
+                printf("MIDI value: %d\n", value);
                 printf("MIDI channel: %d\n", channel);
 		program_change_action(channel,value);	
 		break;
@@ -261,4 +261,3 @@ int main () {
 	gpioCleanup();
     return (0);
 }
-
