@@ -32,6 +32,7 @@
 #define FIELDIDX_RDSPATTERNS_COMMAND 2
 #define FIELDIDX_RDSPATTERNS_DATA 3
 #define FIELDIDX_RDSPATTERNS_PROCESSED 4
+#define FIELDIDX_RDSPATTERNS_ID 5
 
 int issue_command(int address, int value, int data) 
 {
@@ -46,6 +47,8 @@ int running;
 
 void quit_handler(int s){
     printf("Caught signal %d\n",s);
+
+    exit(1);
 
     running = 0;
 }
@@ -154,8 +157,18 @@ int main () {
             issue_command(    atoi(mysqlRow[FIELDIDX_RDSPATTERNS_ADDRESS]),
                               atoi(mysqlRow[FIELDIDX_RDSPATTERNS_COMMAND]),
                               atoi(mysqlRow[FIELDIDX_RDSPATTERNS_DATA]));
-sleep(1);
+            sleep(1);
+            char *update;
+            sprintf(update, "UPDATE commands_rdspatterns SET processed=1 WHERE rdspatterns_id=%d", 
+                    atoi(mysqlRow[FIELDIDX_RDSPATTERNS_ID]));
+            mysqlStatus = mysql_query(mysqlConnection, update);
+            sleep(1);
             printf("\n");
+
+            if (mysqlStatus)
+            {
+                printf("update error!");
+            }
         }
 
         if (mysqlResult)
