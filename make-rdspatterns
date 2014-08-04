@@ -1,0 +1,8 @@
+
+cd RaspberryPi-GPIO/src
+make clean
+make
+make install
+cd ../..
+pwd
+gcc -Wall  rdspatterns.c i2c_bitbang.c -o rdspatterns `mysql_config --cflags` `mysql_config --libs` -Igpio/include -Lgpio/library -lrpigpio -lasound
