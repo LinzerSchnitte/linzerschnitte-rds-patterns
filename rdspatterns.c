@@ -58,6 +58,8 @@ int main () {
     struct sigaction sigIntHandler;
     int headerIdx, fieldIdx;
 
+    setbuf(stdout, NULL);
+
     if (gpioSetup() != OK)
     {
         dbgPrint(DBG_INFO, "gpioSetup failed. Exiting\n");
